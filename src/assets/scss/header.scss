@@ -1,0 +1,15 @@
+.header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 20px 30px;
+  height: 80px;
+  z-index: 1000;
+  background: var(--white);
+
+  .logo-header{
+    width: 272px;
+    // color: $secondary-dark;
+  }
+}
