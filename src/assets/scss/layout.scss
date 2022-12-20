@@ -1,20 +1,51 @@
-.flex-root{
+.flex-root {
   position: relative;
 }
-.flex-wrapper{
+.flex-wrapper {
   width: 100%;
   min-height: 100vh;
-  padding-top: 80px;
+  padding-top: 48px;
 }
 
-.flex-content-sidebar{
-  padding-left: 300px;
+.flex-content-sidebar {
+  width: 100%;
+  height: 100%;
+  margin-left: 200px;
 }
 
 .flex-content {
   padding-left: 100px;
 }
 
-.container-fluid{
-  padding: 50px !important; 
+.content-layout {
+  padding: 30px;
+}
+
+.container-fluid {
+  padding: 50px !important;
+}
+
+.with-navbar {
+  height: 64px;
+  padding-left: 10px;
+  background-color: #d9dee1;
+  a {
+    color: #333333;
+    text-decoration: none;
+  };
+}
+
+.router-link-active {
+  color: #4284e4;
+  position: relative;
+  background-color: rgba(242,243,245,.5);
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #4284e4;
+  }
 }

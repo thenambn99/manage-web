@@ -1,0 +1,27 @@
+.form-group.required {
+  font-size: 14px;
+  position: relative;
+  margin: 12px 0;
+    label {
+      display: block !important;
+      margin-bottom: 3px;
+    }
+    input {
+      width: 100%;
+    }
+    .label-text {
+      position: relative;
+    }
+    .label-text::after {
+      content: "*";
+      display: block;
+      position: absolute;
+      top: -2px;
+      right: -12px;
+      margin-left: 2px;
+      color: #f55361;
+      font-size: 30px;
+      line-height: 1;
+    }
+  }
+

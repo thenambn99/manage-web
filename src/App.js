@@ -1,20 +1,14 @@
 import "./App.css";
-import { useRoutes } from "react-router-dom";
-import Login from "./modules/Login/page/Login";
-import Dashboard from "./modules/Dashboard/Dashboard";
+import RootRoutes from "./router/RootRoutes";
+import { Toaster } from "react-hot-toast";
 
 function App() {
-  const routes = useRoutes([
-    {
-      path: "/",
-      element: <Dashboard></Dashboard>
-    },
-    {
-      path: "/login",
-      element: <Login></Login>
-    }
-  ])
-  return routes
+  return (
+    <div>
+      <RootRoutes></RootRoutes>
+      <Toaster></Toaster>
+    </div>
+  );
 }
 
 export default App;

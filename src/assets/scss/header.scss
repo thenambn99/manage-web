@@ -4,9 +4,11 @@
   left: 0;
   right: 0;
   padding: 20px 30px;
-  height: 80px;
+  height: 48px;
   z-index: 1000;
-  background: var(--white);
+  background-color: #4284e4;
+  color: #ffffff;
+  // background-color: $primary;
 
   .logo-header{
     width: 272px;
