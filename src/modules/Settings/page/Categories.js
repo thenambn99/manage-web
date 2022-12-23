@@ -150,7 +150,7 @@ const Categories = () => {
       dangerMode: true,
     }).then((confirm) => {
       if (confirm) {
-        deleteBrandOrCategory(id, action)
+        deleteBrandOrCategory(id, action);
       }
     });
   };
@@ -173,9 +173,13 @@ const Categories = () => {
       <div className="row d-flex">
         <div
           className="col-md-6 col-sm-6 position-relative"
-          style={{ maxHeight: "460px" }}
+          style={{
+            maxHeight: "485px",
+            height: "485px",
+            border: "1px #cccccc solid",
+          }}
         >
-          <div style={{ maxHeight: "390px", overflow: "auto" }}>
+          <div style={{ maxHeight: "395px", overflow: "auto" }}>
             <table className="table table-hover align-middle">
               <thead>
                 <tr style={{ height: "60px" }}>
@@ -224,7 +228,7 @@ const Categories = () => {
               </tbody>
             </table>
           </div>
-          <div className="footer position-absolute d-flex align-items-center">
+          <div className="footer position-absolute d-flex align-items-center mx-2">
             <button className="btn btn-light">
               <span
                 className="text-primary"
@@ -238,16 +242,10 @@ const Categories = () => {
           </div>
         </div>
         <div
-          className="d-flex justify-content-center"
-          style={{ height: "460px", width: "50px" }}
+          className="col-md-6 col-sm-6 position-relative"
+          style={{ maxHeight: "485px", border: "1px #cccccc solid" }}
         >
-          <div className="vr"></div>
-        </div>
-        <div
-          className="col-md-5 col-sm-5 position-relative"
-          style={{ maxHeight: "460px" }}
-        >
-          <div style={{ maxHeight: "390px", overflow: "auto" }}>
+          <div style={{ maxHeight: "395px", overflow: "auto" }}>
             <table className="table table-hover align-middle">
               <thead>
                 <tr style={{ height: "60px" }}>
@@ -308,7 +306,7 @@ const Categories = () => {
               </tbody>
             </table>
           </div>
-          <div className="footer position-absolute d-flex align-items-center">
+          <div className="footer position-absolute d-flex align-items-center mx-2">
             <button
               className="btn btn-light"
               onClick={() => handleOpenModal("", null, "create", "createBrand")}
