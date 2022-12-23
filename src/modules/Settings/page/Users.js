@@ -6,6 +6,7 @@ import ModalUpdateUser from "../components/ModalUpdateUser";
 import { toast } from "react-hot-toast";
 import DialogConfirm from "@/modules/components/DialogConfirm";
 import { useRef } from "react";
+import { CONSTS } from "@/consts";
 
 const Users = () => {
   const [search, setSearch] = useState("");
@@ -169,15 +170,8 @@ const Users = () => {
                 <td>{user.email}</td>
                 <td>{roleName[user.role]}</td>
                 <td>
-                  {user.role !== 3 ? (
-                    <div className="d-flex float-end">
-                      <button
-                        type="button"
-                        className="btn btn-primary"
-                        onClick={() => handleUpdateUser(user, "edit")}
-                      >
-                        <i className="bi bi-pencil"></i>
-                      </button>
+                  <div className="d-flex flex-row-reverse">
+                    {user.role !== 3 ? (
                       <div className="px-2">
                         <button
                           type="button"
@@ -187,8 +181,16 @@ const Users = () => {
                           <i className="bi bi-trash"></i>
                         </button>
                       </div>
-                    </div>
-                  ) : null}
+                    ) : null}
+                    <button
+                      type="button"
+                      className="btn btn-primary"
+                      style={user.role === CONSTS.ADMIN_ROLE ? {marginRight: "58px"} : {}}
+                      onClick={() => handleUpdateUser(user, "edit")}
+                    >
+                      <i className="bi bi-pencil"></i>
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}
