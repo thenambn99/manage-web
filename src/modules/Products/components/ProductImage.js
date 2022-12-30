@@ -33,7 +33,7 @@ const ProductImage = () => {
         className="form-control"
         id="image"
         onChange={uploadImage}
-        // required
+        required={!values.product_image}
       />
       <div className="d-flex justify-content-center mt-4">
         {newImage ? <img src={newImage} alt="Product" /> : null}
