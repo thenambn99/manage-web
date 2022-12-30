@@ -36,7 +36,7 @@ const ProductImage = () => {
         required={!values.product_image}
       />
       <div className="d-flex justify-content-center mt-4">
-        {newImage ? <img src={newImage} alt="Product" /> : null}
+        {newImage ? <img src={newImage} alt="Product" style={{maxWidth: "247px", maxHeight:"296px"}} /> : null}
       </div>
     </div>
   );
