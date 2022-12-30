@@ -23,6 +23,8 @@ const ProductList = () => {
   const [productList, setProductList] = useState([]);
   const [productListClone, setProductListClone] = useState([]);
   const [searchBrandValue, setSearchBrandValue] = useState("nl");
+  const [searchCategoryValue, setSearchCategoryValue] = useState("ns");
+
   const idCategory = useRef();
   const PER_PAGE = 5;
   const count = Math.ceil(productListClone.length / PER_PAGE);
@@ -60,6 +62,9 @@ const ProductList = () => {
     setLoading(true);
     const res = await axiosInstance.post("deleteProduct", { id: id });
     if (res) {
+      setSearchCategoryValue("ns")
+      setSearchBrandValue("nl")
+      setIsDisabled(true)
       toast.success("Delete product success", {
         duration: 2000,
         position: "bottom-right",
@@ -107,6 +112,7 @@ const ProductList = () => {
       idCategory.current = Number(id);
       setFilterBrandList(brandList.filter((b) => b.category_id === Number(id)));
       setIsDisabled(false);
+      setSearchCategoryValue(id)
     } else {
       setProductListClone(productList);
       setSearchBrandValue("nl");
@@ -180,6 +186,7 @@ const ProductList = () => {
               onChange={(e) => handleSearchByCategory(e.target.value)}
               size="small"
               fullWidth
+              value={searchCategoryValue}
             >
               <MenuItem value="">Not select</MenuItem>
               {categoryList.map((category) => (
