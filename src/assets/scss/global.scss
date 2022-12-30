@@ -35,3 +35,24 @@
   border-top: 1px #cccccc solid;
   padding: 10px 0;
 }
+
+.link {
+  &:hover {
+    color: #4284e4 !important;
+  }
+}
+
+// Editor
+
+.wrapper-class {
+  padding: 1rem;
+  border: 1px solid #ccc;
+}
+.editor-class {
+  background-color:lightgray;
+  padding: 1rem;
+  border: 1px solid #ccc;
+}
+.toolbar-class {
+  border: 1px solid #ccc;
+}

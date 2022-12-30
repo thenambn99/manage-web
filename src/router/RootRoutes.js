@@ -6,7 +6,9 @@ import Login from "../modules/Login/page/Login";
 import Layout from "@/layout/Layout";
 import NotFoundPage from "@/modules/notFound/NotFoundPage";
 import PrivateRoute from "./PrivateRoute";
-const Dashboard = React.lazy(() => import("../modules/Dashboard/page/Dashboard"));
+import EditProduct from "@/modules/Products/page/EditProduct";
+import ProductList from "@/modules/Products/page/ProductList";
+const Dashboard = React.lazy(() =>import("../modules/Dashboard/page/Dashboard"));
 const Settings = React.lazy(() => import("@/modules/Settings/page/Settings"));
 const Products = React.lazy(() => import("@/modules/Products/page/Products"));
 const Orders = React.lazy(() => import("@/modules/Orders/page/Orders"));
@@ -40,6 +42,36 @@ const RootRoutes = () => {
               </Suspense>
             </PrivateRoute>
           ),
+          children: [
+            {
+              index: true,
+              element: (
+                <Suspense fallback={<SplashScreen />}>
+                  <ProductList />
+                </Suspense>
+              ),
+            },
+            {
+              path: "edit/:id",
+              element: (
+                <PrivateRoute>
+                  <Suspense fallback={<SplashScreen />}>
+                    <EditProduct />
+                  </Suspense>
+                </PrivateRoute>
+              ),
+            },
+            {
+              path: "new",
+              element: (
+                <PrivateRoute>
+                  <Suspense fallback={<SplashScreen />}>
+                    <EditProduct />
+                  </Suspense>
+                </PrivateRoute>
+              ),
+            },
+          ],
         },
         {
           path: "orders",
