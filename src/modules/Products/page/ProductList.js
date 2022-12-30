@@ -62,9 +62,9 @@ const ProductList = () => {
     setLoading(true);
     const res = await axiosInstance.post("deleteProduct", { id: id });
     if (res) {
-      setSearchCategoryValue("ns")
-      setSearchBrandValue("nl")
-      setIsDisabled(true)
+      setSearchCategoryValue("ns");
+      setSearchBrandValue("nl");
+      setIsDisabled(true);
       toast.success("Delete product success", {
         duration: 2000,
         position: "bottom-right",
@@ -105,18 +105,19 @@ const ProductList = () => {
   };
 
   const handleSearchByCategory = (id) => {
-    if (id) {
+    if (id === "ns") {
+      setProductListClone(productList);
+      setSearchBrandValue("nl");
+      setSearchCategoryValue("ns")
+      setIsDisabled(true);
+    } else if (id) {
       setProductListClone(
         productList.filter((p) => p.product_category === Number(id))
       );
       idCategory.current = Number(id);
       setFilterBrandList(brandList.filter((b) => b.category_id === Number(id)));
       setIsDisabled(false);
-      setSearchCategoryValue(id)
-    } else {
-      setProductListClone(productList);
-      setSearchBrandValue("nl");
-      setIsDisabled(true);
+      setSearchCategoryValue(id);
     }
   };
 
@@ -188,7 +189,7 @@ const ProductList = () => {
               fullWidth
               value={searchCategoryValue}
             >
-              <MenuItem value="">Not select</MenuItem>
+              <MenuItem value="ns">Not select</MenuItem>
               {categoryList.map((category) => (
                 <MenuItem key={category.id} value={category.id}>
                   {category.category_name}
