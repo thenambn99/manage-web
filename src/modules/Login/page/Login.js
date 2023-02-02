@@ -16,7 +16,7 @@ const Login = () => {
   const requestLogin = (values) => {
     dispatch(loginThunk(values))
       .then((res) => {
-        if (!res?.payload.success) {
+        if (!res?.payload.success || res?.payload?.result.role === 1) {
           setErrorMessages("Email or password is invalid!");
           setShowError(true);
         } else {

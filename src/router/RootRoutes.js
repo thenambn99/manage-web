@@ -14,6 +14,7 @@ const Products = React.lazy(() => import("@/modules/Products/page/Products"));
 const Orders = React.lazy(() => import("@/modules/Orders/page/Orders"));
 const Categories = React.lazy(() => import("@/modules/Settings/page/Categories"));
 const Users = React.lazy(() => import("@/modules/Settings/page/Users"));
+const Coupons = React.lazy(() => import("@/modules/Settings/page/Coupons"))
 
 const RootRoutes = () => {
   const routes = useRoutes([
@@ -113,6 +114,16 @@ const RootRoutes = () => {
                 </PrivateRoute>
               ),
             },
+            {
+              path: "coupons",
+              element: (
+                <PrivateRoute>
+                  <Suspense fallback={<SplashScreen />}>
+                    <Coupons />
+                  </Suspense>
+                </PrivateRoute>
+              ),
+            }
           ],
         },
       ],

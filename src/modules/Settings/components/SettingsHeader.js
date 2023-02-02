@@ -10,6 +10,10 @@ const menuTab = [
     path: "categories",
     name: "Categories",
   },
+  {
+    path: "coupons",
+    name: "Coupons"
+  }
 ];
 
 const SettingsHeader = () => {
