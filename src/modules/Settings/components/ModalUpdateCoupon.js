@@ -10,10 +10,11 @@ const ModalUpdateCoupon = ({
 }) => {
   const formik = useFormik({
     initialValues: {
+      id: couponData?.id,
       coupon_name: couponData?.coupon_name,
       coupon_start: couponData?.coupon_start,
       coupon_end: couponData?.coupon_end,
-      coupon_type: couponData?.coupon_type,
+      coupon_type: couponData?.coupon_type ? couponData.coupon_type : "1",
       coupon_value: couponData?.coupon_value,
       coupon_code: couponData?.coupon_code,
     },
@@ -33,7 +34,7 @@ const ModalUpdateCoupon = ({
             <div className="input-group">
               <input
                 id="coupon-name"
-                name="coupon-name"
+                name="coupon_name"
                 type="text"
                 className="form-control"
                 value={formik.values.coupon_name}
@@ -49,7 +50,7 @@ const ModalUpdateCoupon = ({
             <div className="input-group">
               <input
                 id="coupon-code"
-                name="coupon-code"
+                name="coupon_code"
                 type="text"
                 className="form-control"
                 value={formik.values.coupon_code}
@@ -65,7 +66,7 @@ const ModalUpdateCoupon = ({
             <div className="input-group">
               <input
                 id="coupon-start"
-                name="coupon-start"
+                name="coupon_start"
                 type="date"
                 className="form-control"
                 value={formik.values.coupon_start}
@@ -81,7 +82,7 @@ const ModalUpdateCoupon = ({
             <div className="input-group">
               <input
                 id="coupon-end"
-                name="coupon-end"
+                name="coupon_end"
                 type="date"
                 className="form-control"
                 value={formik.values.coupon_end}
@@ -97,7 +98,7 @@ const ModalUpdateCoupon = ({
             <div className="input-group">
               <select
                 id="Coupon Type"
-                name="Coupon Type"
+                name="coupon_type"
                 type="text"
                 className="form-select"
                 value={formik.values.coupon_type}
@@ -116,7 +117,7 @@ const ModalUpdateCoupon = ({
             <div className="input-group">
               <input
                 id="coupon-value"
-                name="coupon-value"
+                name="coupon_value"
                 type="text"
                 className="form-control"
                 value={formik.values.coupon_value}
@@ -125,6 +126,18 @@ const ModalUpdateCoupon = ({
               />
             </div>
           </div>
+        </div>
+        <div className="d-flex justify-content-between mt-4">
+          <button className="btn btn-light" onClick={() => handleCloseModal()}>
+            <span>Cancel</span>
+          </button>
+          <button
+            className="btn btn-light"
+            onClick={() => handleConfirm(formik.values)}
+            type="submit"
+          >
+            <span className="text-primary">Save</span>
+          </button>
         </div>
       </form>
     </ModalStyled>
