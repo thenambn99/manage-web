@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { toast } from "react-hot-toast";
 import ModalUpdateCoupon from "../components/ModalUpdateCoupon";
 import dayjs from "dayjs";
+import swal from "sweetalert";
 
 const Coupons = () => {
   const [loading, setLoading] = useState(false);
@@ -26,7 +27,7 @@ const Coupons = () => {
       setCouponList(res.data.result);
       setLoading(false);
     } else {
-      toast.error("Update coupon failed", {
+      toast.error("Get coupon failed", {
         position: "bottom-right",
         duration: 2000,
       });
@@ -39,6 +40,10 @@ const Coupons = () => {
     const res = await axiosInstance.post("updateCoupon", params);
     if (res) {
       getAllCoupons();
+      toast.success("Update coupon success", {
+        position: "bottom-right",
+        duration: 2000
+      })
     } else {
       toast.error("Update coupon failed", {
         position: "bottom-right",
@@ -58,8 +63,43 @@ const Coupons = () => {
     setOpenModal(false);
   };
 
+  const handleDeleteCoupon = async (id) => {
+    swal({
+      title: "Are you sure want to delete?",
+      // text: "Are you sure want to delete this?",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((confirm) => {
+      if (confirm) {
+        deleteCoupon(id);
+      }
+    });
+  };
+
+  const deleteCoupon = async (id) => {
+    setLoading(true);
+    const res = await axiosInstance.post("deleteCoupon", { id: id });
+    if (res) {
+      getAllCoupons();
+      toast.success("Delete coupon success", {
+        position: "bottom-right",
+        duration: 2000
+      })
+    } else {
+      toast.error("Delete coupon failed", {
+        position: "bottom-right",
+        duration: 2000,
+      });
+    }
+    setLoading(false);
+  };
+
+  const handleEditCoupon = (coupon) => {
+    setCouponData(coupon)
+    setOpenModal(true)
+  }
   useEffect(() => {
-    console.log(dayjs("2023-02-10T00:00:00.000Z").format("MM DD YYYY"));
     getAllCoupons();
     // eslint-disable-next-line
   }, []);
@@ -81,6 +121,7 @@ const Coupons = () => {
             <th>Start</th>
             <th>End</th>
             <th>Status</th>
+            <th>Detail</th>
             <th></th>
           </tr>
         </thead>
@@ -89,16 +130,30 @@ const Coupons = () => {
             <tr key={coupon.id} style={{ height: "50px" }}>
               <td>{coupon.coupon_name}</td>
               <td>{coupon.coupon_code}</td>
-              <td>{dayjs(`${coupon.coupon_start}`).format("MM-DD-YYYY")}</td>
-              <td>{dayjs(`${coupon.coupon_end}`).format("MM-DD-YYYY")} </td>
-              <td> {}</td>
+              <td>{dayjs(`${coupon.coupon_start}`).format("DD-MM-YYYY")}</td>
+              <td>{dayjs(`${coupon.coupon_end}`).format("DD-MM-YYYY")} </td>
+              <td>
+                {dayjs(`${coupon.coupon_end}`).diff(dayjs(), "d") >= 0 ? (
+                  <div style={{ color: "green" }}>Available</div>
+                ) : (
+                  <div style={{ color: "red" }}>Expired</div>
+                )}
+              </td>
+              <td>
+                {coupon.coupon_type === 1
+                  ? `Sale ${coupon.coupon_value}%`
+                  : `Sale ${coupon.coupon_value.toLocaleString("it-IT", {
+                      style: "currency",
+                      currency: "VND",
+                    })}`}
+              </td>
               <td>
                 <div className="d-flex flex-row-reverse">
                   <div className="px-2">
                     <button
                       type="button"
                       className="btn btn-danger"
-                      // onClick={() => handleDeleteUser(user.id)}
+                      onClick={() => handleDeleteCoupon(coupon.id)}
                     >
                       <i className="bi bi-trash"></i>
                     </button>
@@ -106,7 +161,7 @@ const Coupons = () => {
                   <button
                     type="button"
                     className="btn btn-primary"
-                    // onClick={() => handleUpdateUser(user, "edit")}
+                    onClick={() => handleEditCoupon(coupon)}
                   >
                     <i className="bi bi-pencil"></i>
                   </button>

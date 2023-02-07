@@ -12,8 +12,8 @@ const ModalUpdateCoupon = ({
     initialValues: {
       id: couponData?.id,
       coupon_name: couponData?.coupon_name,
-      coupon_start: couponData?.coupon_start,
-      coupon_end: couponData?.coupon_end,
+      coupon_start: couponData?.coupon_start ? new Date(couponData.coupon_start).toISOString().slice(0, 10): "",
+      coupon_end: couponData?.coupon_end ? new Date(couponData.coupon_end).toISOString().slice(0, 10) : "",
       coupon_type: couponData?.coupon_type ? couponData.coupon_type : "1",
       coupon_value: couponData?.coupon_value,
       coupon_code: couponData?.coupon_code,
