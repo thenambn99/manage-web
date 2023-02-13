@@ -94,7 +94,8 @@ const RootRoutes = () => {
             </PrivateRoute>
           ),
           children: [
-            {
+            { 
+              index: true,
               path: "users",
               element: (
                 <PrivateRoute>

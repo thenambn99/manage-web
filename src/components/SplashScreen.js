@@ -8,9 +8,9 @@ const BackdropStyled = styled(Backdrop)({
   backgroundColor: "rgb(80 80 80 / 50%)",
 });
 
-function SplashScreen() {
+function SplashScreen({isOpen}) {
   return (
-    <BackdropStyled open={true}>
+    <BackdropStyled open={isOpen ? true : isOpen}>
       <CircularProgress/>
     </BackdropStyled>
   );

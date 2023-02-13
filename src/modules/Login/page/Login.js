@@ -1,17 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Formik } from "formik";
 import Button from "@mui/material/Button";
 import { Avatar, Box, Typography } from "@mui/material";
 import Alert from "@mui/material/Alert";
 import { useDispatch } from "react-redux";
 import { loginThunk } from "../redux/authActions";
-import { setAccessToken, setAuth } from "@/utils/localStorage";
+import {
+  getAccessToken,
+  getAuth,
+  setAccessToken,
+  setAuth,
+} from "@/utils/localStorage";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [errorMessages, setErrorMessages] = useState(null);
+  const auth = JSON.parse(getAuth());
+  const accessToken = JSON.parse(getAccessToken());
   const [showError, setShowError] = useState(false);
   const requestLogin = (values) => {
     dispatch(loginThunk(values))
@@ -20,16 +27,22 @@ const Login = () => {
           setErrorMessages("Email or password is invalid!");
           setShowError(true);
         } else {
-          setAccessToken(res?.payload?.accessToken)
-          setAuth(res?.payload?.result)
-          navigate("/")
+          setAccessToken(res?.payload?.accessToken);
+          setAuth(res?.payload?.result);
+          navigate("/");
         }
       })
       .catch((e) => {
-          setErrorMessages("Server Isn't Responding");
-          setShowError(true);
-      })
+        setErrorMessages("Server Isn't Responding");
+        setShowError(true);
+      });
   };
+  useEffect(() => {
+    if (auth && accessToken) {
+      navigate("/");
+    }
+    // eslint-disable-next-line
+  }, []);
   return (
     <div>
       <Box

@@ -21,3 +21,7 @@ export const getAuth = () => {
 export const isAuthenticated = () => {
   return getAccessToken;
 };
+
+export const removeAuth = () => {
+  localStorage.removeItem("auth")
+}

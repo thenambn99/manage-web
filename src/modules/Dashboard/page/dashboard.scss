@@ -1,0 +1,14 @@
+.dashboard {
+  position: relative;
+  background-color: #F3F3FB;
+  min-height: calc(100vh - 48px);
+  .d1 {
+    background-color: #fff;
+    padding: 16px;
+    margin: 16px;
+    font-size: 14px;
+    p {
+      color: #A1A1B5;
+    }
+  }
+}
