@@ -87,7 +87,7 @@ const Dashboard = () => {
               </div>
             </div>
             <div className="col-sm-12 col-md-5 col-lg-5 mt-3">
-              <div className="d1" style={{ height: "405px", width: "80%" }}>
+              <div className="d1" style={{maxHeight: "420px"}}>
                 <DonutChart data={data} />
               </div>
             </div>
