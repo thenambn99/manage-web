@@ -8,7 +8,7 @@ const DonutChart = ({data}) => {
     labels: ["Cancelled", "Processing", "Completed"],
     datasets: [
       {
-        label: "Order status",
+        label: "Num",
         data: [data.total_cancelled, data.total_processing, data.total_completed],
         backgroundColor: [
           'rgba(255, 99, 132, 0.2)',
