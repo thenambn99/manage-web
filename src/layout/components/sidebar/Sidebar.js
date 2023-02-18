@@ -35,7 +35,7 @@ const Sidebar = () => {
       iconActive: OrdersIconActive
     },
     {
-      path: "/settings/users",
+      path: "/settings",
       name: "Settings",
       icon: SettingsIcon,
       iconActive: SettingsIconActive
